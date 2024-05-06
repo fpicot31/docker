@@ -1,0 +1,21 @@
+# version du docker engine
+# Choisir la derneire verison : https://docs.docker.com/compose/compose-file/compose-file-v3/
+#version: '3.8'
+
+# les services
+services:
+  # premier service avec le nom que l'on veut
+  # le nom va etre utilse pour l'image et le container
+  myalpine:
+
+    # mettre l'image de base (key image)ou le Dockerfile (key build)
+    # ici, on choisi l'image de base alpine
+    image: alpine
+
+    # ajouter une comande
+    entrypoint: ["ls"]
+
+    
+
+
+    

@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    image: 127.0.0.1:5000/flask-redis:1.0
+    environment:
+      - FLASK_ENV=development
+    ports:
+      - 5010:5000
+  redis:
+    image: redis:4.0.11-alpine
