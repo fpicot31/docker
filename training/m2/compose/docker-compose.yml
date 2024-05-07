@@ -1,0 +1,33 @@
+version: '3'
+services:
+  myapp_php:
+    build: .
+    container_name: myapp_php
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - .:/var/app:rw
+    depends_on:
+      - db
+    environment:
+      - MYSQL_ADDON_DB=my_database
+      - MYSQL_ADDON_HOST=db
+      - MYSQL_ADDON_USER=root
+      - MYSQL_ADDON_PASSWORD=password
+    networks:
+      - front
+      - back
+  db:
+    image: mariadb:10
+    container_name: myapp_mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    networks:
+      - back
+networks:
+  front: 
+  back:
