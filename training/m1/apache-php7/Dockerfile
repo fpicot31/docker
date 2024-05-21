@@ -2,6 +2,8 @@ FROM php:7.2-apache
 # Set default system timezone
 
 RUN ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+RUN echo "deb http://archive.debian.org/debian stretch main" > /etc/apt/sources.list
+
 # Install last update and php extension
 
 RUN apt-get update && apt-get install -y \
