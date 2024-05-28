@@ -1,0 +1,36 @@
+
+services:
+  a:
+    image: alpine
+    command: ['ping', 'google.fr']
+  b:
+    command: ["ping", "google.fr"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      args:
+        - FOLDER=test
+      labels:
+        - EMAIL=francois@gmail.com
+    ports:
+      - 80:80
+    volumes:
+      - type: bind
+        source: ./data
+        target: /app/data
+      - type: volume
+        source: datavolume
+        target: /app/datavolume
+      - type: volume
+        target: /app/datavolumeanonyme
+    networks:
+      - frontend
+volumes:
+  datavolume:
+    external: true
+networks:
+  default:
+    name: mynetwork
+  frontend:
+    name: frontend
+    driver: bridge
